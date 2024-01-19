@@ -1,6 +1,7 @@
 package com.example.testing;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -34,6 +36,14 @@ public class MainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
+        // Check if the user is authenticated
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            // User is not logged in, redirect to the login activity
+            Intent intent = new Intent(MainPage.this, LoginActivity.class);
+            startActivity(intent);
+            finish(); // Finish MainPage so the user can't go back to it without logging in
+            return; // Prevent further execution of onCreate
+        }
         recyclerView = findViewById(R.id.recyclerView); // ID of your RecyclerView in activity_main.xml
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         // Initialize the array with the expected number of tickets
