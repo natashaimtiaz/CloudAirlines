@@ -1,7 +1,9 @@
 package com.example.testing;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -71,6 +73,15 @@ public class SearchFlightsActivity extends AppCompatActivity {
                             Toast.makeText(SearchFlightsActivity.this, "Error retrieving flight data. Please try again later.", Toast.LENGTH_SHORT).show();
                         }
                     });
+        });
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to the main activity
+                Intent intent = new Intent(SearchFlightsActivity.this, MainPage.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }
 }
