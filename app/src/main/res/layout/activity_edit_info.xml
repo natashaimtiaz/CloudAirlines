@@ -23,46 +23,35 @@
         android:layout_width="234dp"
         android:layout_height="105dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="sans-serif-black"
         android:text="PERSONAL DETAILS"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="412dp"
-        android:layout_height="199dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="355dp"
         android:layout_height="361dp"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toBottomOf="@+id/background"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/rounded_rectangle" />
 
-    <ImageButton
-        android:id="@+id/homeButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="Sms"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/header"
-        app:srcCompat="@drawable/home" />
+    <!--    <ImageButton-->
+    <!--        android:id="@+id/homeButton"-->
+    <!--        android:layout_width="50dp"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:background="@android:color/transparent"-->
+    <!--        android:contentDescription="Sms"-->
+    <!--        android:scaleType="centerInside"-->
+    <!--        app:srcCompat="@drawable/home"-->
+    <!--        tools:layout_editor_absoluteX="298dp"-->
+    <!--        tools:layout_editor_absoluteY="238dp" />-->
 
     <ImageView
         android:id="@+id/imageView3"
@@ -84,8 +73,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="Full Name"
+        android:inputType="text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
@@ -120,8 +109,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="IC Number"
+        android:inputType="text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
@@ -157,8 +146,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="Passport Number"
+        android:inputType="text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
         app:layout_constraintStart_toStartOf="@+id/imageView5"
@@ -194,8 +183,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="Contact Number"
+        android:inputType="text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
         app:layout_constraintStart_toStartOf="@+id/imageView6"
@@ -234,5 +223,19 @@
         android:text="Confirm"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/cancelButton" />
+
+    <ImageButton
+        android:id="@+id/homeButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="24dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Sms"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/home" />
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

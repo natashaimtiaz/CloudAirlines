@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/background"
@@ -23,55 +23,46 @@
         android:layout_width="234dp"
         android:layout_height="105dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="sans-serif-black"
         android:text="SEARCH FLIGHTS"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="412dp"
-        android:layout_height="199dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
     <ImageButton
         android:id="@+id/homeButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="24dp"
         android:background="@android:color/transparent"
         android:contentDescription="Sms"
         android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/home" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="131dp"
         android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/searchButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:srcCompat="@drawable/rounded_rectangle" />
 
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="131dp"
         android:layout_height="48dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/searchButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:srcCompat="@drawable/rounded_rectangle" />
 
     <TextView
@@ -79,6 +70,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="From"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView" />
 
@@ -87,6 +80,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="To"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView1"
         app:layout_constraintStart_toStartOf="@+id/imageView1" />
 
@@ -122,21 +117,21 @@
         android:id="@+id/searchButton"
         android:layout_width="180dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/blue"
         android:text="SEARCH"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/background"
-        app:layout_constraintStart_toStartOf="@+id/background"
-        app:layout_constraintTop_toBottomOf="@+id/imageView1" />
+        app:layout_constraintBottom_toTopOf="@+id/flightList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ListView
         android:id="@+id/flightList"
         android:layout_width="351dp"
         android:layout_height="309dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchButton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
