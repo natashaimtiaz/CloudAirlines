@@ -28,23 +28,23 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="256dp"
-        android:layout_height="64dp"
+        android:layout_width="168dp"
+        android:layout_height="110dp"
         android:fontFamily="sans-serif-black"
         android:text="HOME PAGE"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.135"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_bias="0.107" />
+        app:layout_constraintVertical_bias="0.077" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -55,7 +55,7 @@
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_bias="0.392"
+        app:layout_constraintVertical_bias="0.344"
         app:srcCompat="@drawable/rounded_rectangle" />
 
     <Button
@@ -73,8 +73,8 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="95dp"
+        android:id="@+id/spinnerFrom"
+        android:layout_width="93dp"
         android:layout_height="48dp"
         android:layout_marginStart="12dp"
         android:background="@drawable/spinner_border"
@@ -90,9 +90,9 @@
         android:layout_height="48dp"
         android:layout_marginStart="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintStart_toEndOf="@+id/spinner"
+        app:layout_constraintStart_toEndOf="@+id/spinnerFrom"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.714"
+        app:layout_constraintVertical_bias="0.694"
         app:srcCompat="@drawable/rounded_rectangle" />
 
     <ImageView
@@ -112,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="FROM"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerFrom"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
@@ -150,7 +150,7 @@
         android:layout_width="100dp"
         android:layout_height="24dp"
         android:gravity="center_vertical"
-        android:hint=""
+        android:hint="DATE"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:textColor="@color/black"
@@ -159,8 +159,7 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView5"
         app:layout_constraintHorizontal_bias="0.322"
         app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
     <TextView
         android:id="@+id/textView5"
@@ -175,10 +174,51 @@
         app:layout_constraintTop_toTopOf="@+id/imageView2"
         app:layout_constraintVertical_bias="1.0" />
 
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="361dp"
+        android:layout_height="340dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSearch"
+        app:srcCompat="@drawable/rounded_rectangle" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_width="331dp"
+        android:layout_height="323dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="@+id/imageView7"
+        app:layout_constraintStart_toStartOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSearch" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BALI, IND"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <ImageButton
+        android:id="@+id/exitButton"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:contentDescription="exit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/exit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -102,7 +102,10 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Authentication successful.", Toast.LENGTH_SHORT).show();
                             // Here you can start a new Intent to open the main activity of your app
                              Intent intent = new Intent(LoginActivity.this, MainPage.class);
+                             intent.putExtra("USER_EMAIL", email);
                              startActivity(intent);
+
+                             //pass email value
                              finish(); // Call finish() if you want to close the login activity
                         } else {
                             // Sign in fails

@@ -10,22 +10,23 @@ class Passenger {
     }
 }
 
-class Ticket {
-    int nextTicketId = 1; // Static counter for generating ticket ID
-    Passenger passenger;
-    boolean isBooked;
-    int ticketId;
+//class Ticket {
+//    int nextTicketId = 1; // Static counter for generating ticket ID
+//    Passenger passenger;
+//    boolean isBooked;
+//    int ticketId;
+//
+//    Ticket(Passenger passenger) {
+//        this.passenger = passenger;
+//        this.isBooked = true;
+//        this.ticketId = nextTicketId++;
+//    }
+//    public int getTicketId() {
+//        return ticketId;
+//    }
+//
+//}
 
-    Ticket(Passenger passenger) {
-        this.passenger = passenger;
-        this.isBooked = true;
-        this.ticketId = nextTicketId++;
-    }
-    public int getTicketId() {
-        return ticketId;
-    }
-
-}
 
 public class Queue {
     private int size;
@@ -91,3 +92,73 @@ public class Queue {
         return queue;
     }
 }
+
+
+class Ticket {
+    private String ticketId;
+    private String flightId;
+    private String passengerName; // Assuming passenger name is required
+    private String status; // For example, "Confirmed", "Waiting List", etc.
+
+    // Constructor
+    public Ticket(String ticketId, String flightId, String passengerName, String status) {
+        this.ticketId = ticketId;
+        this.flightId = flightId;
+        this.passengerName = passengerName;
+        this.status = status;
+    }
+
+    // Getter and Setter for ticketId
+    public String getTicketId() {
+        return ticketId;
+    }
+
+    public void setTicketId(String ticketId) {
+        this.ticketId = ticketId;
+    }
+
+    // Getter and Setter for flightId
+    public String getFlightId() {
+        return flightId;
+    }
+
+    public void setFlightId(String flightId) {
+        this.flightId = flightId;
+    }
+
+    // Getter and Setter for passengerName
+    public String getPassengerName() {
+        return passengerName;
+    }
+
+    public void setPassengerName(String passengerName) {
+        this.passengerName = passengerName;
+    }
+
+    // Getter and Setter for status
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    // Optional: ToString method for easy printing
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ticketId='" + ticketId + '\'' +
+                ", flightId='" + flightId + '\'' +
+                ", passengerName='" + passengerName + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
+
+
+
+    // Other methods can be added as per requirements...
+}
+
+
+
