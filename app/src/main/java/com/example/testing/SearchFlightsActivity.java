@@ -9,13 +9,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class SearchFlightsActivity extends AppCompatActivity {
     private EditText toDateEditText;
     private Button searchButton;
     private ListView flightListView;
+    private FirebaseAuth auth;
 
     private DatabaseReference databaseReference;
     @Override
@@ -53,26 +55,42 @@ public class SearchFlightsActivity extends AppCompatActivity {
             String fromDate = fromDateEditText.getText().toString();
             String toDate = toDateEditText.getText().toString();
 
-            // Query Firebase for flights in the specified date range
-            databaseReference.orderByChild("flightDate").startAt(fromDate).endAt(toDate)
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                flightList.add(snapshot.getValue().toString());
+            auth = FirebaseAuth.getInstance();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("Flight")
+                    .whereGreaterThanOrEqualTo("Date", fromDate)
+                    .whereLessThanOrEqualTo("Date", toDate)
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                // Extract specific fields from the document
+                                String flightID = document.getString("FlightID");
+                                String flightDate = document.getString("Date");
+                                String flightTime = document.getString("Time");
+                                Long availableSeats = document.getLong("availableSeats");
+
+                                // Format the flight information for display
+                                String displayText = "Date: " + flightDate +
+                                        "\nTime: " + flightTime +
+                                        "\nAvailable Seats: " + availableSeats;
+
+                                // Add the formatted string to the list
+                                flightList.add(displayText);
                             }
                             adapter.notifyDataSetChanged();
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            // Handle error
-                            Log.e("FirebaseError", "Database error: " + databaseError.getMessage());
-
-                            // Display an error message to the user if needed
-                            Toast.makeText(SearchFlightsActivity.this, "Error retrieving flight data. Please try again later.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.w("MainPage", "Error getting documents.", task.getException());
                         }
                     });
+            flightListView.setOnItemClickListener((parent, view, position, id) -> {
+                // Get the selected flight information from the clicked item
+                String selectedFlightInfo = flightList.get(position);
+
+//                // Start the BookFlightActivity and pass relevant data
+//                Intent bookingIntent = new Intent(MainActivity.this, BookFlightActivity.class);
+//                startActivity(bookingIntent);
+            });
         });
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
