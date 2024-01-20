@@ -1,17 +1,15 @@
 package com.example.testing;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,26 +26,18 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 public class MainPage extends AppCompatActivity implements TicketAdapter.TicketItemListener {
     private RecyclerView recyclerView;
     private TicketAdapter ticketAdapter;
     private TicketDB[] ticketArray;
-    private ImageView imageViewCalendar;
-    private TextView textViewDate; // TextView to show the selected date
-    // Add a member to hold the PassengerID you want to query
     private String passengerID = "USER01"; // Replace with the actual PassengerID
     private Spinner spinner;
-
     private TicketManager ticketManager;
-
-
     private ImageButton exitButton;
-
-    private String userEmail;
+    private Button buttonNext;
+    private String userEmail, FROMValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,31 +77,24 @@ public class MainPage extends AppCompatActivity implements TicketAdapter.TicketI
 
         fetchTickets(userEmail);
 
-        imageViewCalendar = findViewById(R.id.imageViewCalendar);
-        textViewDate = findViewById(R.id.textViewDate); // Assuming you have a TextView to show the date
 
         ticketManager = new TicketManager(10);
 
-        imageViewCalendar.setOnClickListener(new View.OnClickListener() {
+        //item selected on Spinner
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Calendar now = Calendar.getInstance();
-                Log.d("MainPage", "Calendar icon clicked"); // Debug log
-                int year = now.get(Calendar.YEAR);
-                int month = now.get(Calendar.MONTH);
-                int day = now.get(Calendar.DAY_OF_MONTH);
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Here, 'parent' is the spinner
+                // 'position' is the index of the selected item
+                FROMValue = parent.getItemAtPosition(position).toString();
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        MainPage.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                // Format the date and set it to the TextView
-                                String formattedDate = String.format(Locale.getDefault(), "%d-%d-%d", year, monthOfYear + 1, dayOfMonth);
-                                textViewDate.setText(formattedDate);
-                            }
-                        }, year, month, day);
-                datePickerDialog.show();
+                // Now 'selectedValue' contains the current value of the spinner
+                // You can store it in a string or use it as needed
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
             }
         });
 
@@ -123,7 +106,18 @@ public class MainPage extends AppCompatActivity implements TicketAdapter.TicketI
             //onDestroy();
         });
 
+        buttonNext = findViewById(R.id.buttonNext);
+        buttonNext.setOnClickListener(v -> {
+            // Start the SignUpActivity
+            Intent intent = new Intent(MainPage.this, SearchFlightsActivity.class);
 
+            //send FROM to SearchFlightActivity
+            intent.putExtra("FROM", FROMValue);
+            intent.putExtra("USER_EMAIL", userEmail);
+            startActivity(intent);
+            //onDestroy();
+        });
+        
     }
 
     // Modified fetchTickets method to fetch based on PassengerID
