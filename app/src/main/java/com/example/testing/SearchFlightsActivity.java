@@ -68,7 +68,7 @@ public class SearchFlightsActivity extends AppCompatActivity {
                                 String flightID = document.getString("FlightID");
                                 String flightDate = document.getString("Date");
                                 String flightTime = document.getString("Time");
-                                Long availableSeats = document.getLong("availableSeats");
+                                Long availableSeats = document.getLong("AvailableSeats");
 
                                 // Format the flight information for display
                                 String displayText = "Date: " + flightDate +
